@@ -1,0 +1,31 @@
+header {
+  background-color: #181714;
+}
+
+header > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  color: #eebb57;
+}
+
+nav a {
+  color: #ffffff;
+}
+
+nav a.active {
+  color: #eebb57;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav li {
+  list-style: none;
+}
