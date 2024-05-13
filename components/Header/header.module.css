@@ -1,0 +1,22 @@
+.header {
+  background-color: #202020;
+  padding: 24px 10vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.link {
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: #bebebe;
+  transition: 0.3s;
+}

@@ -1,0 +1,20 @@
+.button {
+  all: unset;
+  border-radius: 8px;
+  padding: 8px 32px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.button,
+.contained {
+  background-color: #e05252;
+  color: #ffffff;
+}
+
+.button:hover,
+.contained:hover {
+  background-color: #ca4949;
+  transition: 0.3s;
+}

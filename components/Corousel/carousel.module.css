@@ -1,0 +1,16 @@
+.image {
+  width: 100vw;
+  height: 480px;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.5);
+}
+
+.dot {
+  padding-bottom: 32px !important;
+  gap: 8px;
+}
+
+.dot button {
+  background-color: transparent;
+}

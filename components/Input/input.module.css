@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  color: #fff;
+}
+
+.input {
+  all: unset;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 8px 12px;
+  border: 1px solid #e05252;
+}
