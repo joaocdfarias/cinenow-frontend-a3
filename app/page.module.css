@@ -1,5 +1,6 @@
 .container {
   padding: 0 10vw;
+  min-height: 100vh;
 }
 
 .movies {

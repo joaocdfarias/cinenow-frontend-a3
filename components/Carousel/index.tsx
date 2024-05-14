@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
-import React, { useCallback } from 'react'
+import React from 'react'
 
 import Carousel from 'react-multi-carousel'
 
@@ -9,6 +8,7 @@ import { IImages } from '../../types'
 
 import styles from './carousel.module.css'
 import 'react-multi-carousel/lib/styles.css'
+import Image from 'next/image'
 
 interface ICarouselProps {
   images?: IImages[]
@@ -46,11 +46,13 @@ const CarouselComponent = ({ images }: ICarouselProps) => {
       arrows={false}
     >
       {images?.map((image) => (
-        <img
+        <Image
           key={image.id}
           src={image.url}
           alt={image.description}
           className={styles.image}
+          width={1920}
+          height={1080}
         />
       ))}
     </Carousel>

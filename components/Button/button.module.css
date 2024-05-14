@@ -7,14 +7,26 @@
   box-sizing: border-box;
 }
 
-.button,
-.contained {
+.button:hover {
+  opacity: 0.9;
+}
+
+.button.contained {
   background-color: #e05252;
   color: #ffffff;
 }
 
-.button:hover,
-.contained:hover {
+.button.contained:hover {
   background-color: #ca4949;
   transition: 0.3s;
+  opacity: 1;
+}
+
+.button.secondary {
+  background-color: #858484;
+  color: #ffffff;
+}
+
+.button.large {
+  padding: 16px;
 }

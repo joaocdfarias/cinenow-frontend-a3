@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes, HTMLProps } from 'react'
 import styles from './button.module.css'
 
-interface IButtonProps {
+type TVariants = 'contained' | 'outlined' | 'secondary'
+
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
-  variant: 'contained' | 'outlined'
+  variant: TVariants
   fill?: boolean
+  size?: 'large' | 'default'
 }
 
-const Button = ({ children, variant, fill }: IButtonProps) => {
+const Button = ({ children, variant, fill, size }: IButtonProps) => {
   return (
     <button
       style={{
         width: fill ? '100%' : 'unset',
         textAlign: fill ? 'center' : 'unset',
       }}
-      className={`${styles.button} ${styles[variant]}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size!]}`}
     >
       {children}
     </button>

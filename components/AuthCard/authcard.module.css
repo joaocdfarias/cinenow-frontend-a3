@@ -1,0 +1,24 @@
+.authCard {
+  max-height: 730px;
+}
+
+.login {
+  display: flex;
+}
+
+.section {
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 128px 32px 32px 32px;
+}
+
+.image {
+  width: 550px;
+  height: 730px;
+  object-fit: cover;
+  border-radius: 16px 0 0 16px;
+  filter: brightness(0.5);
+}

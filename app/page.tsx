@@ -1,4 +1,6 @@
-import CarouselComponent from '../components/Corousel'
+'use client'
+
+import CarouselComponent from '../components/Carousel'
 import List from '../components/List'
 import { IImages, IMovies } from '../types'
 import styles from './page.module.css'

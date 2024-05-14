@@ -4,7 +4,7 @@
   color: #ffffff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-top: 10px solid #e05252;
 }
 

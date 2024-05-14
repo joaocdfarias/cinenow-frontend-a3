@@ -1,0 +1,35 @@
+.container {
+  padding: 0 10vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card {
+  width: 70% !important;
+  padding: 64px 128px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.message {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 300;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 64px;
+}

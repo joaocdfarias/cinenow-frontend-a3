@@ -1,4 +1,4 @@
-.container {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -14,4 +14,13 @@
   background-color: #fff;
   padding: 8px 12px;
   border: 1px solid #e05252;
+}
+
+.input.large {
+  padding: 16px;
+}
+
+.error {
+  color: #e05252;
+  font-size: 12px;
 }
