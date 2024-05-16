@@ -5,11 +5,9 @@ import styles from './page.module.css'
 import Card from '../../components/Card'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function RecoverPassword() {
-  const { back } = useRouter()
-
   return (
     <main className={styles.container}>
       <Card className={styles.card}>
@@ -27,12 +25,16 @@ export default function RecoverPassword() {
           </p>
         </div>
         <div className={styles.buttonWrapper}>
-          <Button variant="secondary" fill size="large" onClick={() => back()}>
-            Voltar
-          </Button>
-          <Button variant="contained" fill size="large">
-            Enviar link
-          </Button>
+          <Link className={styles.link} href="/login">
+            <Button variant="secondary" fill size="large">
+              Voltar
+            </Button>
+          </Link>
+          <Link className={styles.link} href="/email-sent">
+            <Button variant="contained" fill size="large">
+              Enviar link
+            </Button>
+          </Link>
         </div>
       </Card>
     </main>

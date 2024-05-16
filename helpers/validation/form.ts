@@ -1,1 +1,0 @@
-export const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

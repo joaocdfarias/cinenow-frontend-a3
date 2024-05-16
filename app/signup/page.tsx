@@ -11,6 +11,8 @@ import { z } from 'zod'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '../../contexts/auth'
 
 const SignUpSchema = z
   .object({
@@ -22,7 +24,10 @@ const SignUpSchema = z
       .email({ message: 'E-mail inválido' }),
     password: z
       .string()
-      .min(8, { message: 'Sua senha deve ter pelo menos 8 caractéres' }),
+      .min(8, { message: 'Sua senha deve ter pelo menos 8 caractéres' })
+      .regex(/[a-z]/, 'Sua senha deve conter pelo menos 1 letra minúscula')
+      .regex(/[A-Z]/, 'Sua senha deve conter pelo menos 1 letra maiúscula')
+      .regex(/\d/, 'Sua senha deve conter pelo menos 1 número'),
     repeatPassword: z.string(),
   })
   .superRefine(({ password, repeatPassword }, ctx) => {
@@ -37,22 +42,41 @@ const SignUpSchema = z
 
 export interface ISignUpFormValues extends z.infer<typeof SignUpSchema> {}
 
+const defaultValues: ISignUpFormValues = {
+  name: '',
+  email: '',
+  password: '',
+  repeatPassword: '',
+}
+
 export default function Signup() {
   const {
     register,
-    formState: { errors },
+    handleSubmit,
+    formState: { errors, isSubmitting },
   } = useForm<ISignUpFormValues>({
     mode: 'onChange',
     reValidateMode: 'onSubmit',
     resolver: zodResolver(SignUpSchema),
+    defaultValues,
   })
 
-  console.log(errors)
+  const { push } = useRouter()
+  const { signup } = useAuth()
+
+  const onSubmit = (data: ISignUpFormValues) => {
+    try {
+      signup(data.email, data.password)
+      push('/login')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <main className={styles.container}>
       <AuthCard>
-        <form className={styles.inputSection}>
+        <form className={styles.inputSection} onSubmit={handleSubmit(onSubmit)}>
           <Input
             id="name"
             label="Nome"
@@ -86,8 +110,8 @@ export default function Signup() {
             error={errors.repeatPassword?.message}
             {...register('repeatPassword')}
           />
-          <Button variant="contained" fill>
-            Cadastrar
+          <Button variant="contained" fill disabled={isSubmitting}>
+            {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
           </Button>
         </form>
         <div className={styles.login}>

@@ -28,7 +28,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(function Input(
         name={id}
         {...rest}
       />
-      <span className={styles.error}>{error ? error : '‎'}</span>
+      {error && <span className={styles.error}>{error}</span>}
     </div>
   )
 })

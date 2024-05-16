@@ -4,6 +4,7 @@
 
 .login {
   display: flex;
+  position: relative;
 }
 
 .section {

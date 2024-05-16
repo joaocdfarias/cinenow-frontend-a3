@@ -33,3 +33,7 @@
   display: flex;
   gap: 64px;
 }
+
+.link {
+  width: 100%;
+}

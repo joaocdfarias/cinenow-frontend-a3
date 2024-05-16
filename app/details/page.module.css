@@ -1,0 +1,67 @@
+.main {
+  min-height: 100vh;
+}
+
+.container {
+  padding: 0 10vw;
+  color: #fff;
+}
+
+.movieContainer {
+  display: flex;
+  gap: 36px;
+  padding: 128px;
+  justify-content: center;
+}
+
+.hero {
+  border-bottom: 10px solid #e05252;
+}
+
+.poster {
+  border-radius: 8px;
+}
+
+.wrapper {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding-left: 0px;
+}
+
+.hero {
+  background-size: 100vw 616px;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background: left;
+}
+
+.synopsis {
+  max-width: 700px;
+}
+
+.title,
+.synopsisTitle,
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.info {
+  width: max-content;
+}
+
+.heading {
+  color: #e05252;
+  margin-top: 64px;
+  margin-bottom: 48px;
+}

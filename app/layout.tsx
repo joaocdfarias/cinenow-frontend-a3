@@ -6,6 +6,7 @@ import './globals.css'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Providers from '../providers'
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

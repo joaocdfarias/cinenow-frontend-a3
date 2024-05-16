@@ -30,3 +30,12 @@
 .button.large {
   padding: 16px;
 }
+
+.button.disabled {
+  pointer-events: none;
+  filter: contrast(0.6);
+}
+
+.button a {
+  color: #fff;
+}

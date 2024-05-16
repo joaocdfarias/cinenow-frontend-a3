@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 import Link from 'next/link'
@@ -7,6 +9,8 @@ import styles from './header.module.css'
 import Button from '../Button'
 import Logo from '../Logo'
 import { ILinks } from '../../types'
+import { useAuth } from '../../contexts/auth'
+import { useRouter } from 'next/navigation'
 
 const navLinks: ILinks[] = [
   {
@@ -24,6 +28,18 @@ const navLinks: ILinks[] = [
 ]
 
 const Header = () => {
+  const { currentUser, logout } = useAuth()
+  const { push } = useRouter()
+
+  const handleClick = () => {
+    if (currentUser) {
+      logout()
+      push('/login')
+    } else {
+      push('/login')
+    }
+  }
+
   return (
     <header className={styles.header}>
       <Logo />
@@ -33,9 +49,9 @@ const Header = () => {
             {link.name}
           </Link>
         ))}
-        <Link href="/login">
-          <Button variant="contained"> Login </Button>
-        </Link>
+        <Button variant="contained" onClick={handleClick}>
+          {currentUser ? 'Logout' : 'Login'}
+        </Button>
       </nav>
     </header>
   )

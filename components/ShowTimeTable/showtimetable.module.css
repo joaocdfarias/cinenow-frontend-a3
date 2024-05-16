@@ -1,0 +1,43 @@
+.table {
+  border-spacing: 0;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 8px;
+  outline: 1px solid #313131;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.data {
+  padding: 16px 48px;
+  background-color: #202020;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.data:nth-child(1) {
+  border-radius: 8px 0px 0px;
+}
+
+.data:last-child {
+  border-radius: 0px 8px 0px 0px;
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid #313131;
+}
+
+.row td {
+  padding: 24px 48px;
+}
+
+.chip {
+  padding: 4px 16px;
+  background-color: #e05252;
+  min-width: 75px;
+  border-radius: 4px;
+}
+
+.active {
+  background-color: #e05252;
+}
