@@ -195,6 +195,16 @@ export default function Details() {
         <p className={styles.heading}>Horários</p>
         <ShowTimeTable showTimes={movie.showTimes} />
         <p className={styles.heading}>Trailer</p>
+        <div className={styles.videoWrapper}>
+          <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/_YUzQa_1RCE?si=NoLtXS7UhZGuvsz1"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            className={styles.video}
+          ></iframe>
+        </div>
       </div>
     </main>
   )
