@@ -45,6 +45,11 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     password: string
   ): { success: boolean; message: string } => {
     const result = authService.login(email, password)
+
+    if (!result.success) {
+      throw new Error('User not found')
+    }
+
     if (result.success) {
       setCurrentUser(authService.getCurrentUser())
     }
