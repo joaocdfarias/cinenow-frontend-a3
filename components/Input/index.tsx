@@ -6,7 +6,7 @@ import { UseFormRegister } from 'react-hook-form'
 import { ISignUpFormValues } from '../../app/signup/page'
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string
+  label?: string
   error?: string
   inputSize?: 'default' | 'large'
   register?: UseFormRegister<ISignUpFormValues>
@@ -18,9 +18,11 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(function Input(
 ) {
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label} htmlFor={id}>
-        {label}
-      </label>
+      {label && (
+        <label className={styles.label} htmlFor={id}>
+          {label}
+        </label>
+      )}
       <input
         className={`${styles.input} ${styles[inputSize!]}`}
         ref={ref}

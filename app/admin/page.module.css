@@ -1,0 +1,46 @@
+.container {
+  padding: 0 10vw;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.headerTitle {
+  font-size: 36px;
+}
+
+.headerSection {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.table {
+  border-spacing: 0;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 8px;
+  border: 1px solid #313131;
+  table-layout: fixed;
+  margin: 0 auto;
+}
+
+.data {
+  padding: 16px 48px;
+  background-color: #202020;
+  text-transform: capitalize;
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid #313131;
+}
+
+.row td {
+  padding: 24px 48px;
+}
