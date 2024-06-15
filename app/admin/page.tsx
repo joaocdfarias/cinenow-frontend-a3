@@ -19,7 +19,7 @@ export interface IMovie {
   duration: string
   endDate: Date
   id: number
-  parentalRating: number
+  parentalRating: string
   posterUrl: string
   startDate: Date
   synopsis: string
@@ -32,7 +32,9 @@ export default function Admin() {
 
   useEffect(() => {
     const getMovies = async () => {
-      const response = await axios.get('https://cinenow-backend-a3.onrender.com/movie')
+      const response = await axios.get(
+        'https://cinenow-backend-a3.onrender.com/movie'
+      )
       setMovies(response.data)
     }
 
@@ -44,9 +46,12 @@ export default function Admin() {
       <div className={styles.header}>
         <div className={styles.headerSection}>
           <p className={styles.headerTitle}>Filmes</p>
-          <Button variant="contained" size="default">
-            Adicionar +
-          </Button>
+
+          <Link href="/create">
+            <Button variant="contained" size="default">
+              Adicionar +
+            </Button>
+          </Link>
         </div>
         <div className={styles.headerSection}>
           <Input placeholder="Digite aqui o nome do filme" />
@@ -90,9 +95,9 @@ export default function Admin() {
                     <p> {format(movie.endDate, 'dd/MM/yyyy')} </p>
                   </td>
                   <td>
-                    <Button variant="contained">
-                      <Link href={`/create?id=${movie.id}`}>Editar</Link>
-                    </Button>
+                    <Link href={`/create?id=${movie.id}`}>
+                      <Button variant="contained">Editar</Button>
+                    </Link>
                   </td>
                 </tr>
               )

@@ -11,16 +11,17 @@ import Input from '../../components/Input'
 import styles from './page.module.css'
 import { useEffect, useState } from 'react'
 import { IMovie } from '../admin/page'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { format } from 'date-fns'
+import Link from 'next/link'
 
 const CreateMovieSchema = z.object({
   title: z.string(),
   directorName: z.string(),
   duration: z.string(),
-  parentalRating: z.number(),
-  startDate: z.date(),
-  endDate: z.date(),
+  parentalRating: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
   posterUrl: z.any(),
   synopsis: z.string(),
 })
@@ -30,18 +31,24 @@ export interface ICreateMovie extends z.infer<typeof CreateMovieSchema> {}
 export default function Create() {
   const [movie, setMovie] = useState<Partial<IMovie>>({})
   const id = useSearchParams().get('id')
+  const { push } = useRouter()
 
   const defaultValues: ICreateMovie = {
     title: movie.title!,
     directorName: movie.directorName!,
     duration: movie.duration!,
-    endDate: movie.endDate!,
+    endDate: String(movie.endDate!),
     parentalRating: movie.parentalRating!,
-    startDate: movie.startDate!,
+    startDate: String(movie.startDate!),
     synopsis: movie.synopsis!,
   }
 
-  const { register, handleSubmit, reset } = useForm<ICreateMovie>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { dirtyFields, isSubmitting },
+  } = useForm<ICreateMovie>({
     resolver: zodResolver(CreateMovieSchema),
     defaultValues,
   })
@@ -59,7 +66,11 @@ export default function Create() {
       })
     }
 
-    getMovie()
+    if (id) {
+      getMovie()
+    } else {
+      return
+    }
   }, [id, reset])
 
   const uploadPoster = async (file: File): Promise<string> => {
@@ -91,10 +102,17 @@ export default function Create() {
     }
 
     try {
-      await axios.post(
-        'https://cinenow-backend-a3.onrender.com/movie',
-        movieData
-      )
+      if (id) {
+        await axios.patch(
+          'https://cinenow-backend-a3.onrender.com/movie/' + id,
+          movieData
+        )
+      } else {
+        await axios.post(
+          'https://cinenow-backend-a3.onrender.com/movie',
+          movieData
+        )
+      }
     } catch (error) {
       console.error('Error creating movie:', error)
       throw error
@@ -102,13 +120,17 @@ export default function Create() {
   }
 
   const onSubmit = async (data: ICreateMovie) => {
-    console.log(data)
     try {
       const file = data.posterUrl[0]
       const posterUrl = await uploadPoster(file)
       await createMovie(data, posterUrl)
+      alert(
+        id ? 'Filme atualizado com sucesso' : 'Filme adicionado com sucesso'
+      )
+      push('/admin')
     } catch (error) {
       console.error('Error during submission:', error)
+      alert(id ? 'Erro ao atualizar filme' : 'Erro ao criar filme')
     }
   }
 
@@ -173,9 +195,26 @@ export default function Create() {
             id="posterUrl"
           />
         </div>
-        <Button variant="contained" type="submit">
-          Concluir
-        </Button>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '24px',
+            marginTop: '64px',
+          }}
+        >
+          <Link href="/admin" style={{ color: 'white' }}>
+            Cancelar
+          </Link>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={!Object.keys(dirtyFields).length}
+          >
+            {isSubmitting ? 'Carregando...' : 'Concluir'}
+          </Button>
+        </div>
       </form>
     </main>
   )
