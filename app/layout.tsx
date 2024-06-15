@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 import { Be_Vietnam_Pro } from 'next/font/google'
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={font.className}>
         <Providers>
           <Header />
-          {children}
+          <Suspense>{children}</Suspense>
           <Footer />
         </Providers>
       </body>
