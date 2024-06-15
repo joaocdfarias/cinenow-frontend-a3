@@ -1,0 +1,14 @@
+.container {
+  padding: 0 10vw;
+  min-height: 100vh;
+}
+
+.inputs {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.container button {
+  margin-top: 32px;
+}

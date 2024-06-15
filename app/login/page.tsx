@@ -46,7 +46,7 @@ export default function Login() {
   const onSubmit = async (data: ILoginFormValues) => {
     try {
       login(data.email, data.password)
-      push('/details')
+      push('/admin')
     } catch (error) {
       console.error(error)
     }

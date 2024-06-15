@@ -11,6 +11,6 @@ export interface IImages {
 
 export interface IMovies {
   id: string
-  poster: string
+  posterUrl: string
   title: string
 }

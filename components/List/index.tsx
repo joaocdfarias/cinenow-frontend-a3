@@ -49,7 +49,7 @@ const List = ({ title, movies }: IListProps) => {
             <div className={styles.movie}>
               <Image
                 className={styles.poster}
-                src={movie.poster}
+                src={movie.posterUrl}
                 alt={movie.title}
                 height={383}
                 width={250}

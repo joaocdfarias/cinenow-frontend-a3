@@ -24,3 +24,24 @@
   color: #e05252;
   font-size: 12px;
 }
+
+.hidden {
+  display: none;
+}
+
+.fileLabel {
+  height: 100%;
+}
+
+.file {
+  border: 1px solid #313131;
+  background-color: #202020;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  height: 92%;
+  cursor: pointer;
+}

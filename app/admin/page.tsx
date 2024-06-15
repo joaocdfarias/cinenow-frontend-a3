@@ -1,32 +1,44 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 
 import styles from './page.module.css'
 import Card from '../../components/Card'
 import Image from 'next/image'
+import axios from 'axios'
+import { format } from 'date-fns'
+import Link from 'next/link'
 
 const headings = ['Poster', 'Nome', 'Data de lançamento', 'Data de fim', '']
-const movies = [
-  {
-    id: 1,
-    posterUrl: '/images/poster1.jpg',
-    title: 'Dune 2',
-    startDate: '01/01/2024',
-    endDate: '01/02/2024',
-  },
-  {
-    id: 2,
-    posterUrl: '/images/poster1.jpg',
-    title: 'Dune 2',
-    startDate: '01/01/2024',
-    endDate: '01/02/2024',
-  },
-]
+
+export interface IMovie {
+  createdAt: Date
+  directorName: string
+  duration: string
+  endDate: Date
+  id: number
+  parentalRating: number
+  posterUrl: string
+  startDate: Date
+  synopsis: string
+  title: string
+  updateAt: Date
+}
 
 export default function Admin() {
+  const [movies, setMovies] = useState<IMovie[]>([])
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const response = await axios.get('https://cinenow-backend-a3.onrender.com/movie')
+      setMovies(response.data)
+    }
+
+    getMovies()
+  }, [])
+
   return (
     <main className={styles.container}>
       <div className={styles.header}>
@@ -72,13 +84,15 @@ export default function Admin() {
                     <p> {movie.title} </p>
                   </td>
                   <td>
-                    <p> {movie.startDate} </p>
+                    <p> {format(movie.startDate, 'dd/MM/yyyy')} </p>
                   </td>
                   <td>
-                    <p> {movie.endDate} </p>
+                    <p> {format(movie.endDate, 'dd/MM/yyyy')} </p>
                   </td>
                   <td>
-                    <Button variant="contained">Editar</Button>
+                    <Button variant="contained">
+                      <Link href={`/create?id=${movie.id}`}>Editar</Link>
+                    </Button>
                   </td>
                 </tr>
               )
